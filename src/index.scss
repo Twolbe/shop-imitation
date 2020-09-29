@@ -1,0 +1,198 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  margin: 0 50px 0 50px;
+}
+
+h1 {
+  margin: 0;
+}
+.navbar,
+.nav-list {
+  display: flex;
+  flex-direction: row;
+}
+.navbar-brand {
+  background-color: rgb(168, 75, 75);
+  color: black;
+  padding: 20px;
+}
+.nav-list {
+  background-color: rgb(94, 94, 94);
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  justify-content: start;
+  margin: 0;
+}
+.nav-item {
+  padding: 20px 0 20px 20px;
+}
+.nav-item:hover > .nav-link {
+  color: rgb(190, 190, 190);
+}
+.nav-link {
+  color: rgb(148, 148, 148);
+  text-decoration: none;
+  position: relative;
+}
+.active-nav-link {
+  color: white;
+}
+
+.goods-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.goods-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row;
+  padding: 0.5rem 1rem;
+  border-radius: 20px 0 20px 0;
+  background-color: rgb(212, 212, 212);
+  margin-bottom: 0.5rem;
+}
+.goods-item.out-cart {
+  animation: outcart 500ms linear forwards;
+}
+.goods-item.at-cart {
+  animation: atcart 500ms linear forwards;
+}
+@keyframes outcart {
+  0% {
+    background-color: rgb(174, 209, 140);
+  }
+  100% {
+    background-color: rgb(212, 212, 212);
+  }
+}
+@keyframes atcart {
+  0% {
+    background-color: rgb(212, 212, 212);
+  }
+  100% {
+    background-color: rgb(174, 209, 140);
+  }
+}
+.goods-item span {
+  min-width: 25%;
+}
+.goods-item .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.final-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 0.5rem 1rem;
+  border-radius: 20px 0 20px 0;
+  background-color: rgb(212, 212, 212);
+  margin-bottom: 0.5rem;
+}
+
+.final-board span {
+  min-width: 25%;
+}
+
+.final-board .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 180px;
+  min-height: 40px;
+  border-radius: 20px 2px 20px 2px;
+  overflow: hidden;
+  background-color: rgba(235, 235, 235, 0.5);
+}
+.button:hover {
+  background-color: rgba(94, 94, 94, 0.5);
+  cursor: pointer;
+}
+.button:active {
+  background-color: rgba(94, 94, 94, 0.8);
+  cursor: pointer;
+}
+
+.button-text {
+  color: black;
+  user-select: none;
+}
+
+.button-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  transform: translate(0, 26px);
+  transition: transform 500ms;
+}
+
+.button-text-container.move {
+  transform: translate(0, -26px);
+}
+
+.header {
+  padding: 0.5em 0.5em 0.5em 0;
+}
+
+.counter {
+  background-color: black;
+  border-radius: 50% 0 50% 0;
+  text-align: center;
+  position: absolute;
+  top: -0.25em;
+  right: -1.3em;
+  font-size: 1em;
+  line-height: 0.8em;
+  width: 0.8em;
+  height: 0.8em;
+  padding: 0.2em;
+  color: white;
+}
+
+.action-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .button {
+    background-color: rgb(168, 75, 75);
+  }
+  .button:hover {
+    background-color: rgb(207, 99, 99);
+  }
+  .button:active {
+    background-color: rgb(116, 56, 56);
+  }
+}
