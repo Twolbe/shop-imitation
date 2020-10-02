@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import Context from "../context";
+import { Context } from "../App";
+import './Navbar.scss'
 
-export const Navbar = () => {
-  const { goodsInCart } = useContext(Context);
+export default function Navbar () {
+  const { cartGoods } = React.useContext(Context);
 
   return (
     <nav className="navbar">
@@ -26,9 +27,9 @@ export const Navbar = () => {
             to="/cart"
           >
             Cart
-            {goodsInCart.length !== 0 ? (
+            {cartGoods.length !== 0 ? (
               <span className="counter">
-                {goodsInCart.length}
+                {cartGoods.length}
               </span>
             ) : (
               null
@@ -39,3 +40,4 @@ export const Navbar = () => {
     </nav>
   );
 };
+

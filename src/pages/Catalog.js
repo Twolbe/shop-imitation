@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import GoodsList from "../components/Goods/GoodsList";
-import Context from "../context";
+import React from "react";
+import { Context } from "../App";
+import List from "../List/List";
 
 export const Catalog = () => {
-  const { goods } = useContext(Context);
+  const {goods} = React.useContext(Context)
 
   return (
     <div>
-      <h1 className="header">Catalog</h1>
-      <GoodsList goods={goods} />
+      <h1>Catalog</h1>
+      <List goods={goods}/>
     </div>
   );
 };

@@ -1,0 +1,34 @@
+.button {
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 1rem 0 1rem 0;
+}
+.add-button {
+  background-color: rgb(174, 209, 140);
+}
+.add-button:hover {
+  background-color: rgb(213, 255, 170);
+}
+.add-button:active {
+  background-color: rgb(128, 153, 102);
+}
+.delete-button {
+  background-color: rgb(212, 212, 212);
+}
+.delete-button:hover {
+  background-color: rgb(238, 238, 238);
+}
+.delete-button:active {
+  background-color: rgb(173, 173, 173);
+}
+.clean-button {
+  color: white;
+  background-color: rgb(168, 75, 75);
+}
+.clean-button:hover {
+  background-color: rgb(216, 92, 92);
+}
+.clean-button:active {
+  background-color: rgb(131, 57, 57);
+}

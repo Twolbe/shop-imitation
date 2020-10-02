@@ -1,0 +1,15 @@
+.container {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.action-row{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.total-price{
+    margin-right: 1rem;
+}
+  

@@ -1,46 +1,23 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
-import { Cart } from "./pages/Cart";
+import "./App.scss";
+import { Route, Switch, BrowserRouter } from "react-router-dom";
 import { Catalog } from "./pages/Catalog";
-import Context from "./context";
+import { Cart } from "./pages/Cart";
 import GoodsData from "./GoodsData.json";
+import Navbar from "./Navbar/Navbar";
 
 function App() {
   const [goods, setGoods] = React.useState(GoodsData);
-  const [goodsInCart, setGoodsInCart] = React.useState([]);
-
-  function addClassnameMove(id) {
-    setGoods(
-      goods.map((item) => {
-        if (item.id === id) {
-          item.at_cart = !item.at_cart;
-          if (item.at_cart) {
-            let addToCart = goodsInCart.every((cartItem) => {
-              return cartItem !== item;
-            });
-            if (addToCart) {
-              setGoodsInCart(goodsInCart.concat([item]));
-            }
-          } else if (!item.at_cart) {
-            setGoodsInCart(goodsInCart.filter((cartItem) => cartItem !== item));
-          }
-        }
-        return item;
-      })
-    );
-  }
+  const [cartGoods, setCartGoods] = React.useState([]);
 
   return (
-    <Context.Provider
-      value={{ goods, goodsInCart, addClassnameMove, setGoodsInCart, setGoods }}
-    >
+    <Context.Provider value={{ goods, cartGoods, setGoods, setCartGoods }}>
       <BrowserRouter>
         <Navbar />
         <div className="container">
           <Switch>
-            <Route path={"/"} exact component={Catalog} goods={goods} />
-            <Route path={"/cart"} component={Cart} />
+            <Route component={Catalog} path="/" exact />
+            <Route component={Cart} path="/cart" />
           </Switch>
         </div>
       </BrowserRouter>
@@ -48,4 +25,5 @@ function App() {
   );
 }
 
+export const Context = React.createContext();
 export default App;

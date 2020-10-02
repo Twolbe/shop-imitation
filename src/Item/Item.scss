@@ -1,0 +1,36 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0.5rem 1rem;
+  border-radius: 20px 0 20px 0;
+  background-color: rgb(212, 212, 212);
+  margin-bottom: 0.5rem;
+}
+.at-cart {
+  background-color: rgb(174, 209, 140);
+}
+
+.goods-info {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+}
+.button-container {
+  width: 25%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.info-item {
+  width: 33%;
+  &.name {
+    font-weight: 900;
+  }
+  &.type,
+  &.price {
+    font-weight: 300;
+  }
+}

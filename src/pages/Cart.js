@@ -1,26 +1,19 @@
-import React, { useContext } from "react";
-import GoodsList from "../components/Goods/GoodsList";
-import Context from "../context";
+import React from "react";
+import { Context } from "../App";
+import Button from "../Button/Button";
+import List from "../List/List";
+import "../App.scss"
 
 export const Cart = () => {
-  const { goodsInCart } = useContext(Context);
-  const { setGoodsInCart } = useContext(Context);
-  const { goods } = useContext(Context);
-  const { setGoods } = useContext(Context);
+  const { cartGoods, setCartGoods } = React.useContext(Context);
 
-  function cleanCart(cartItems) {
-    for (let good of goods) {
-      if (cartItems.includes(good)) {
-        good.at_cart = !good.at_cart;
-      }
-    }
-    setGoods(goods);
-    setGoodsInCart([]);
+  function cleanCart() {
+    setCartGoods([]);
   }
 
-  function getTotalPrice(goodsInCart) {
+  function getTotalPrice(cartGoods) {
     let totalPrice = 0;
-    for (let cartItem of goodsInCart) {
+    for (let cartItem of cartGoods) {
       totalPrice = totalPrice + Number.parseInt(cartItem.price);
     }
     return totalPrice;
@@ -28,24 +21,15 @@ export const Cart = () => {
 
   return (
     <div>
-      <h1 className="header">Cart</h1>
-      {goodsInCart.length ? (
-        <div>
-          <GoodsList goods={goodsInCart} />
-          <div className="action-row">
-            <span>Total price: {getTotalPrice(goodsInCart)} ₽</span>
-            <div
-              className="button"
-              onClick={() => {
-                cleanCart(goodsInCart);
-              }}
-            >
-              Clean cart
-            </div>
-          </div>
+      <h1>Cart</h1>
+      <List goods={cartGoods} />
+      {cartGoods.length ? (
+        <div className="action-row">
+          <span className="total-price">Итого: {getTotalPrice(cartGoods)} ₽</span>
+          <Button type="clean" action={() => cleanCart(cartGoods)}/>
         </div>
       ) : (
-        <div>Cart is empty!</div>
+        <p>Корзина пуста!</p>
       )}
     </div>
   );
