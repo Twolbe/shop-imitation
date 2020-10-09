@@ -1,14 +1,20 @@
 import React from "react";
-import { Context } from "../App";
+import { connect } from "react-redux";
 import List from "../List/List";
 
-export const Catalog = () => {
-  const {goods} = React.useContext(Context)
-
+function Catalog(props) {
   return (
     <div>
       <h1>Catalog</h1>
-      <List goods={goods}/>
+      <List goods={props.catalog} />
     </div>
   );
 };
+
+function mapStateToProps(state) {
+  return {
+    catalog: state.catalog
+  }
+}
+
+export default connect(mapStateToProps)(Catalog)

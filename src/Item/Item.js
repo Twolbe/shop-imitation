@@ -1,15 +1,16 @@
 import React from "react";
-import { Context } from "../App";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Button from "../Button/Button";
+import { addToCart } from "../store/actionCreators/addToCart";
+import { deleteFromCart } from "../store/actionCreators/deleteFromCart";
 import "./Item.scss";
 
-export default function Item({ item }) {
-  const { goods, cartGoods, setCartGoods } = React.useContext(Context);
-
+function Item(props) {
   const classListForItem = ["item"];
   let atCart = null;
 
-  if (cartGoods.includes(item)) {
+  if (props.cart.includes(props.item)) {
     classListForItem.push("at-cart");
     atCart = true;
   } else {
@@ -17,46 +18,39 @@ export default function Item({ item }) {
     atCart = false;
   }
 
-  function addToCart(id) {
-    goods.map((goodsItem) => {
-      if (goodsItem.id === id) {
-        let addPermission = cartGoods.every((cartItem) => {
-          return cartItem !== goodsItem;
-        });
-
-        if (addPermission) {
-          setCartGoods(cartGoods.concat(goodsItem));
-        }
-      }
-      return goodsItem;
-    });
-  }
-
-  function deleteFromCart(id) {
-    goods.map((goodsItem) => {
-      if (goodsItem.id === id) {
-        setCartGoods(
-          cartGoods.filter((cartGoodsItem) => cartGoodsItem !== goodsItem)
-        );
-      }
-      return goodsItem;
-    });
-  }
-
   return (
     <li className={classListForItem.join(" ")}>
       <div className="goods-info">
-        <span className="info-item name">{item.name}</span>
-        <span className="info-item type">{item.type}</span>
-        <span className="info-item price">{item.price} ₽</span>
+        <span className="info-item name">{props.item.name}</span>
+        <span className="info-item type">{props.item.type}</span>
+        <span className="info-item price">{props.item.price} ₽</span>
       </div>
       <div className="button-container">
         {!atCart ? (
-          <Button type="add" action={() => addToCart(item.id)} />
+          <Button type="add" action={() => props.addToCart(props.item)} />
         ) : (
-          <Button type="delete" action={() => deleteFromCart(item.id)} />
-        )}
+            <Button type="delete" action={() => props.deleteFromCart(props.item)} />
+          )}
       </div>
     </li>
   );
 }
+
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    {
+      addToCart: addToCart,
+      deleteFromCart: deleteFromCart
+    },
+    dispatch
+  )
+}
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Item)

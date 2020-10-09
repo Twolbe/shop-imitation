@@ -1,10 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Context } from "../App";
 import './Navbar.scss'
 
-export default function Navbar () {
-  const { cartGoods } = React.useContext(Context);
+function Navbar(props) {
 
   return (
     <nav className="navbar">
@@ -27,13 +26,13 @@ export default function Navbar () {
             to="/cart"
           >
             Cart
-            {cartGoods.length !== 0 ? (
+            {props.cart.length !== 0 ? (
               <span className="counter">
-                {cartGoods.length}
+                {props.cart.length}
               </span>
             ) : (
-              null
-            )}
+                null
+              )}
           </NavLink>
         </li>
       </ul>
@@ -41,3 +40,11 @@ export default function Navbar () {
   );
 };
 
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(Navbar)

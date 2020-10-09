@@ -1,16 +1,12 @@
 import React from "react";
-import { Context } from "../App";
 import Button from "../Button/Button";
 import List from "../List/List";
 import "../App.scss"
+import { connect } from "react-redux";
+import { cleanCart } from "../store/actionCreators/cleanCart";
+import { bindActionCreators } from "redux";
 
-export const Cart = () => {
-  const { cartGoods, setCartGoods } = React.useContext(Context);
-
-  function cleanCart() {
-    setCartGoods([]);
-  }
-
+function Cart(props) {
   function getTotalPrice(cartGoods) {
     let totalPrice = 0;
     for (let cartItem of cartGoods) {
@@ -22,15 +18,27 @@ export const Cart = () => {
   return (
     <div>
       <h1>Cart</h1>
-      <List goods={cartGoods} />
-      {cartGoods.length ? (
+      <List goods={props.cart} />
+      {props.cart.length ? (
         <div className="action-row">
-          <span className="total-price">Итого: {getTotalPrice(cartGoods)} ₽</span>
-          <Button type="clean" action={() => cleanCart(cartGoods)}/>
+          <span className="total-price">Итого: {getTotalPrice(props.cart)} ₽</span>
+          <Button type="clean" action={() => props.cleanCart(props.cart)} />
         </div>
       ) : (
-        <p>Корзина пуста!</p>
-      )}
+          <p>Корзина пуста!</p>
+        )}
     </div>
   );
 };
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ cleanCart: cleanCart }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)
