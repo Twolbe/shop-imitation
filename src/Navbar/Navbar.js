@@ -40,11 +40,6 @@ function Navbar(props) {
   );
 };
 
-
-function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  }
-}
+const mapStateToProps = state => ({ cart: state.cart })
 
 export default connect(mapStateToProps)(Navbar)

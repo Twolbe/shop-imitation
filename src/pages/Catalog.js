@@ -11,10 +11,6 @@ function Catalog(props) {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    catalog: state.catalog
-  }
-}
+const mapStateToProps = state => ({ catalog: state.catalog })
 
 export default connect(mapStateToProps)(Catalog)

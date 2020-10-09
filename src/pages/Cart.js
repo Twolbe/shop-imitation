@@ -31,14 +31,8 @@ function Cart(props) {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  }
-}
+const mapStateToProps = state => ({ cart: state.cart })
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ cleanCart: cleanCart }, dispatch)
-}
+const mapDispatchToProps = dispatch => (bindActionCreators({ cleanCart }, dispatch))
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

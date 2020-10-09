@@ -36,21 +36,10 @@ function Item(props) {
   );
 }
 
+const mapDispatchToProps = dispatch => (
+  bindActionCreators({ addToCart, deleteFromCart }, dispatch)
+)
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    {
-      addToCart: addToCart,
-      deleteFromCart: deleteFromCart
-    },
-    dispatch
-  )
-}
-
-function mapStateToProps(state) {
-  return {
-    cart: state.cart
-  }
-}
+const mapStateToProps = state => ({ cart: state.cart })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Item)

@@ -1,5 +1,5 @@
 import initialState from "../initialState";
 
-export function catalogReducer(state = initialState.products) {
+export default function catalogReducer(state = initialState.products) {
     return state;
 }
